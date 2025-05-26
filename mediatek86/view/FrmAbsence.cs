@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace mediatek86
+namespace mediatek86.view
 {
-    public partial class Form1 : Form
+    public partial class FrmAbsence : Form
     {
-        public Form1()
+        public FrmAbsence()
         {
             InitializeComponent();
+        }
+
+        private void labelNom_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
