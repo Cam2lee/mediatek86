@@ -1,4 +1,4 @@
-﻿namespace mediatek86
+﻿namespace mediatek86.view
 {
     partial class FrmMediatek
     {

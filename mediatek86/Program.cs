@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using mediatek86.view;
 
 namespace mediatek86
 {
+    /// <summary>
+    /// Application de gestion de personnel
+    /// </summary>
     internal static class Program
     {
         /// <summary>
@@ -19,4 +23,5 @@ namespace mediatek86
             Application.Run(new FrmMediatek());
         }
     }
+    
 }

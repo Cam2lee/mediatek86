@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace mediatek86.view
 {
+    /// <summary>
+    /// Fenêtre des absences
+    /// </summary>
     public partial class FrmAbsence : Form
     {
+        /// <summary>
+        /// Conrtuction des composants graphiques et appel des autres initialisations
+        /// </summary>
         public FrmAbsence()
         {
             InitializeComponent();
-        }
-
-        private void labelNom_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

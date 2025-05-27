@@ -57,7 +57,6 @@
             this.labelLogin.Size = new System.Drawing.Size(39, 13);
             this.labelLogin.TabIndex = 2;
             this.labelLogin.Text = "Login :";
-            this.labelLogin.Click += new System.EventHandler(this.labelNomPWD_Click);
             // 
             // labelPWD
             // 
