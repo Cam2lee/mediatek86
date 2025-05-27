@@ -32,7 +32,7 @@
             this.buttonAbsences = new System.Windows.Forms.Button();
             this.buttonSupprimer = new System.Windows.Forms.Button();
             this.buttonModifier = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPersonnel = new System.Windows.Forms.DataGridView();
             this.groupBoxAjouter = new System.Windows.Forms.GroupBox();
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.buttonEnregistrer = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.textPrenom = new System.Windows.Forms.TextBox();
             this.textNom = new System.Windows.Forms.TextBox();
             this.groupBoxPersonnel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).BeginInit();
             this.groupBoxAjouter.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.groupBoxPersonnel.Controls.Add(this.buttonAbsences);
             this.groupBoxPersonnel.Controls.Add(this.buttonSupprimer);
             this.groupBoxPersonnel.Controls.Add(this.buttonModifier);
-            this.groupBoxPersonnel.Controls.Add(this.dataGridView1);
+            this.groupBoxPersonnel.Controls.Add(this.dgvPersonnel);
             this.groupBoxPersonnel.Location = new System.Drawing.Point(12, 12);
             this.groupBoxPersonnel.Name = "groupBoxPersonnel";
             this.groupBoxPersonnel.Size = new System.Drawing.Size(931, 307);
@@ -81,6 +81,7 @@
             this.buttonSupprimer.TabIndex = 3;
             this.buttonSupprimer.Text = "Supprimer";
             this.buttonSupprimer.UseVisualStyleBackColor = true;
+            this.buttonSupprimer.Click += new System.EventHandler(this.buttonSupprimer_Click);
             // 
             // buttonModifier
             // 
@@ -90,14 +91,20 @@
             this.buttonModifier.TabIndex = 1;
             this.buttonModifier.Text = "Modifier";
             this.buttonModifier.UseVisualStyleBackColor = true;
+            this.buttonModifier.Click += new System.EventHandler(this.buttonModifier_Click);
             // 
-            // dataGridView1
+            // dgvPersonnel
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(870, 235);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvPersonnel.AllowUserToResizeRows = false;
+            this.dgvPersonnel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonnel.Location = new System.Drawing.Point(19, 19);
+            this.dgvPersonnel.MultiSelect = false;
+            this.dgvPersonnel.Name = "dgvPersonnel";
+            this.dgvPersonnel.ReadOnly = true;
+            this.dgvPersonnel.RowHeadersVisible = false;
+            this.dgvPersonnel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPersonnel.Size = new System.Drawing.Size(870, 235);
+            this.dgvPersonnel.TabIndex = 0;
             // 
             // groupBoxAjouter
             // 
@@ -128,6 +135,7 @@
             this.buttonAnnuler.TabIndex = 12;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
             // buttonEnregistrer
             // 
@@ -137,6 +145,7 @@
             this.buttonEnregistrer.TabIndex = 11;
             this.buttonEnregistrer.Text = "Enregistrer";
             this.buttonEnregistrer.UseVisualStyleBackColor = true;
+            this.buttonEnregistrer.Click += new System.EventHandler(this.buttonEnregistrer_Click);
             // 
             // labelService
             // 
@@ -229,7 +238,7 @@
             this.Name = "FrmMediatek";
             this.Text = "Personnel";
             this.groupBoxPersonnel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).EndInit();
             this.groupBoxAjouter.ResumeLayout(false);
             this.groupBoxAjouter.PerformLayout();
             this.ResumeLayout(false);
@@ -239,7 +248,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxPersonnel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPersonnel;
         private System.Windows.Forms.Button buttonSupprimer;
         private System.Windows.Forms.Button buttonModifier;
         private System.Windows.Forms.GroupBox groupBoxAjouter;

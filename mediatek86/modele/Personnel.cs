@@ -12,31 +12,6 @@ namespace mediatek86.modele
     public class Personnel
     {
         /// <summary>
-        /// Attributs idPersonnel de la table Personnel
-        /// </summary>
-        public int IdPersonnel { get; }
-        /// <summary>
-        /// Attributs Nom de la table Personnel
-        /// </summary>
-        public string Nom { get; }
-        /// <summary>
-        /// Attributs Prenom de la table Personnel
-        /// </summary>
-        public string Prenom { get; }
-        /// <summary>
-        /// Attributs Tel de la table Personnel
-        /// </summary>
-        public string Tel { get; }
-        /// <summary>
-        /// Attributs Mail de la table Personnel
-        /// </summary>
-        public string Mail { get; }
-        /// <summary>
-        /// Attributs idService de la table Personnel
-        /// </summary>
-        public int IdService { get; }
-
-        /// <summary>
         /// Valorise les propriétés
         /// </summary>
         /// <param name="idpersonnel"></param>
@@ -44,15 +19,40 @@ namespace mediatek86.modele
         /// <param name="prenom"></param>
         /// <param name="tel"></param>
         /// <param name="mail"></param>
-        /// <param name="idservice"></param>
-        public Personnel(int idpersonnel, string nom, string prenom, string tel, string mail, int idservice)
+        /// <param name="service"></param>
+        public Personnel(int idpersonnel, string nom, string prenom, string tel, string mail, Service service)
         {
-            IdPersonnel = idpersonnel;
-            Nom = nom;
-            Prenom = prenom;
-            Tel = tel;
-            Mail = mail;
-            IdService = idservice;
+            this.Idpersonnel = idpersonnel;
+            this.Nom = nom;
+            this.Prenom = prenom;
+            this.Tel = tel;
+            this.Mail = mail;
+            this.Service = service;
         }
+
+        /// <summary>
+        /// idpersonnel
+        /// </summary>
+        public int Idpersonnel { get; }
+        /// <summary>
+        /// Nom
+        /// </summary>
+        public string Nom { get; set; }
+        /// <summary>
+        /// Prenom
+        /// </summary>
+        public string Prenom { get; set; }
+        /// <summary>
+        /// Tel
+        /// </summary>
+        public string Tel { get; set; }
+        /// <summary>
+        /// Mail
+        /// </summary>
+        public string Mail { get; set; }
+        /// <summary>
+        /// Service
+        /// </summary>
+        public Service Service { get; set; }
     }
 }

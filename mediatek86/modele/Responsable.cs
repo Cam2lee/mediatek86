@@ -27,8 +27,8 @@ namespace mediatek86.modele
         /// <param name="pwd"></param>
         public Responsable(string login, string pwd)
         {
-            Login = login;
-            Pwd = pwd;
+            this.Login = login;
+            this.Pwd = pwd;
         }
     }
 }
