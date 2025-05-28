@@ -14,11 +14,11 @@ namespace mediatek86.modele
         /// <summary>
         /// Attributs Login de la table Responsable
         /// </summary>
-        public string Login { get; }
+        public string Login { get; set; }
         /// <summary>
         /// Attributs Pwd de la table Responsable
         /// </summary>
-        public string Pwd { get; }
+        public string Pwd { get; set; }
 
         /// <summary>
         /// Valorise les propriétés

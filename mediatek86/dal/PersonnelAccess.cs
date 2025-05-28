@@ -33,32 +33,24 @@ namespace mediatek86.dal
         /// <returns>vrai si l'utilisateur a le bon login et pwd</returns>
         public Boolean ControleAuthentification(Responsable responsable)
         {
-            if (access.Manager != null)
+            string req = "SELECT * FROM responsable WHERE login = @login AND pwd = SHA2(@pwd, 256)";
+            Dictionary<string, object> parameters = new Dictionary<string, object> {
+            { "@login", responsable.Login },
+            { "@pwd", responsable.Pwd }
+        };
+            try
             {
-                string req = "select * from login";
-                req += "where d.login=@login and pwd=SHA2(@pwd, 256)";
-                Dictionary<string, object> parameters = new Dictionary<string, object> {
-                    { "@login", responsable.Login },
-                    { "@pwd", responsable.Pwd }
-                };
-                try
-                {
-                    List<Object[]> records = access.Manager.ReqSelect(req, parameters);
-                    if (records != null)
-                    {
-                        return (records.Count > 0);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("PersonnelAccess.ControleAuthentification catch req={0} erreur={1}", req, e.Message);
-                    Environment.Exit(0);
-                }
+                List<Object[]> records = access.Manager.ReqSelect(req, parameters);
+                return records != null && records.Count > 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine($"PersonnelAccess.ControleAuthentification erreur : {e.Message}");
+                Environment.Exit(0);
             }
             return false;
-        }
-
+        }        
 
         /// <summary>
         /// Récupère et retourne le personnel

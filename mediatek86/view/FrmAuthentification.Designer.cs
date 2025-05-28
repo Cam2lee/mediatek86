@@ -48,6 +48,7 @@
             this.textBoxPWD.Name = "textBoxPWD";
             this.textBoxPWD.Size = new System.Drawing.Size(226, 20);
             this.textBoxPWD.TabIndex = 1;
+            this.textBoxPWD.UseSystemPasswordChar = true;
             // 
             // labelLogin
             // 
@@ -75,6 +76,7 @@
             this.buttonConnecter.TabIndex = 4;
             this.buttonConnecter.Text = "Se connecter";
             this.buttonConnecter.UseVisualStyleBackColor = true;
+            this.buttonConnecter.Click += new System.EventHandler(this.buttonConnecter_Click);
             // 
             // FrmAuthentification
             // 

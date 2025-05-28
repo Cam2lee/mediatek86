@@ -31,7 +31,10 @@ namespace mediatek86.modele
             this.Nom = nom;
         }
 
-        ///
+        /// <summary>
+        /// Retourne le nom du service
+        /// </summary>
+        /// <returns>Le nom du service</returns>
         public override string ToString()
         {
             return this.Nom;

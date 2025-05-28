@@ -72,6 +72,7 @@
             this.buttonAbsences.TabIndex = 4;
             this.buttonAbsences.Text = "Absences";
             this.buttonAbsences.UseVisualStyleBackColor = true;
+            this.buttonAbsences.Click += new System.EventHandler(this.buttonAbsences_Click);
             // 
             // buttonSupprimer
             // 

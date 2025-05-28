@@ -18,18 +18,18 @@ namespace mediatek86.modele
         /// <summary>
         /// Attributs DateDebut de la table Absence
         /// </summary>
-        public DateTime DateDebut { get; }
+        public DateTime DateDebut { get; set; }
         /// <summary>
         /// Attributs DateFin de la table Absence
         /// </summary>
-        public DateTime DateFin { get; }
+        public DateTime DateFin { get; set; }
         /// <summary>
-        /// Attributs idMotif de la table Absence
+        /// Objet Motif de l'absence
         /// </summary>
-        public int IdMotif { get; }
+        public Motif Motif { get; set; }
 
         /// <summary>
-        /// Valorise les propriétés
+        /// Constructeur avec idMotif (pour compatibilité)
         /// </summary>
         /// <param name="idpersonnel"></param>
         /// <param name="datedebut"></param>
@@ -40,7 +40,44 @@ namespace mediatek86.modele
             IdPersonnel = idpersonnel;
             DateDebut = datedebut;
             DateFin = datefin;
-            IdMotif = idmotif;
+            Motif = new Motif(idmotif, ""); // Temporaire
+        }
+
+        /// <summary>
+        /// Constructeur avec objet Motif
+        /// </summary>
+        /// <param name="idpersonnel"></param>
+        /// <param name="datedebut"></param>
+        /// <param name="datefin"></param>
+        /// <param name="motif"></param>
+        public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, Motif motif)
+        {
+            IdPersonnel = idpersonnel;
+            DateDebut = datedebut;
+            DateFin = datefin;
+            Motif = motif;
+        }
+
+        /// <summary>
+        /// Propriété calculée pour l'affichage de la date de fin
+        /// </summary>
+        public string DateFinAffichage
+        {
+            get
+            {
+                return DateFin == DateTime.MinValue ? "En cours" : DateFin.ToString("dd/MM/yyyy");
+            }
+        }
+
+        /// <summary>
+        /// Propriété calculée pour l'affichage du motif
+        /// </summary>
+        public string MotifLibelle
+        {
+            get
+            {
+                return Motif?.Libelle ?? "";
+            }
         }
     }
 }

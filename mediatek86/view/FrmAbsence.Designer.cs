@@ -30,20 +30,20 @@
         {
             this.buttonEnregistrer = new System.Windows.Forms.Button();
             this.labelTel = new System.Windows.Forms.Label();
-            this.groupBoxAjouter = new System.Windows.Forms.GroupBox();
+            this.groupBoxAjouterAbs = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerFin = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDebut = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxMotif = new System.Windows.Forms.ComboBox();
             this.buttonAnnuler = new System.Windows.Forms.Button();
             this.labelDatedebut = new System.Windows.Forms.Label();
             this.labelMotifAbsences = new System.Windows.Forms.Label();
             this.buttonSupprimerAbsences = new System.Windows.Forms.Button();
             this.buttonModifierAbsences = new System.Windows.Forms.Button();
             this.groupBoxAbsences = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxMotif = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimeFin = new System.Windows.Forms.DateTimePicker();
-            this.groupBoxAjouter.SuspendLayout();
+            this.dataGridViewAbsence = new System.Windows.Forms.DataGridView();
+            this.groupBoxAjouterAbs.SuspendLayout();
             this.groupBoxAbsences.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAbsence)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonEnregistrer
@@ -54,6 +54,7 @@
             this.buttonEnregistrer.TabIndex = 11;
             this.buttonEnregistrer.Text = "Enregistrer";
             this.buttonEnregistrer.UseVisualStyleBackColor = true;
+            this.buttonEnregistrer.Click += new System.EventHandler(this.buttonEnregistrer_Click);
             // 
             // labelTel
             // 
@@ -64,22 +65,44 @@
             this.labelTel.TabIndex = 9;
             this.labelTel.Text = "Date de fin";
             // 
-            // groupBoxAjouter
+            // groupBoxAjouterAbs
             // 
-            this.groupBoxAjouter.Controls.Add(this.dateTimeFin);
-            this.groupBoxAjouter.Controls.Add(this.dateTimePicker1);
-            this.groupBoxAjouter.Controls.Add(this.comboBoxMotif);
-            this.groupBoxAjouter.Controls.Add(this.buttonAnnuler);
-            this.groupBoxAjouter.Controls.Add(this.buttonEnregistrer);
-            this.groupBoxAjouter.Controls.Add(this.labelTel);
-            this.groupBoxAjouter.Controls.Add(this.labelDatedebut);
-            this.groupBoxAjouter.Controls.Add(this.labelMotifAbsences);
-            this.groupBoxAjouter.Location = new System.Drawing.Point(12, 325);
-            this.groupBoxAjouter.Name = "groupBoxAjouter";
-            this.groupBoxAjouter.Size = new System.Drawing.Size(931, 137);
-            this.groupBoxAjouter.TabIndex = 3;
-            this.groupBoxAjouter.TabStop = false;
-            this.groupBoxAjouter.Text = "Ajouter une absence";
+            this.groupBoxAjouterAbs.Controls.Add(this.dateTimePickerFin);
+            this.groupBoxAjouterAbs.Controls.Add(this.dateTimePickerDebut);
+            this.groupBoxAjouterAbs.Controls.Add(this.comboBoxMotif);
+            this.groupBoxAjouterAbs.Controls.Add(this.buttonAnnuler);
+            this.groupBoxAjouterAbs.Controls.Add(this.buttonEnregistrer);
+            this.groupBoxAjouterAbs.Controls.Add(this.labelTel);
+            this.groupBoxAjouterAbs.Controls.Add(this.labelDatedebut);
+            this.groupBoxAjouterAbs.Controls.Add(this.labelMotifAbsences);
+            this.groupBoxAjouterAbs.Location = new System.Drawing.Point(12, 325);
+            this.groupBoxAjouterAbs.Name = "groupBoxAjouterAbs";
+            this.groupBoxAjouterAbs.Size = new System.Drawing.Size(931, 137);
+            this.groupBoxAjouterAbs.TabIndex = 3;
+            this.groupBoxAjouterAbs.TabStop = false;
+            this.groupBoxAjouterAbs.Text = "Ajouter une absence";
+            // 
+            // dateTimePickerFin
+            // 
+            this.dateTimePickerFin.Location = new System.Drawing.Point(531, 63);
+            this.dateTimePickerFin.Name = "dateTimePickerFin";
+            this.dateTimePickerFin.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerFin.TabIndex = 16;
+            // 
+            // dateTimePickerDebut
+            // 
+            this.dateTimePickerDebut.Location = new System.Drawing.Point(531, 27);
+            this.dateTimePickerDebut.Name = "dateTimePickerDebut";
+            this.dateTimePickerDebut.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePickerDebut.TabIndex = 15;
+            // 
+            // comboBoxMotif
+            // 
+            this.comboBoxMotif.FormattingEnabled = true;
+            this.comboBoxMotif.Location = new System.Drawing.Point(71, 27);
+            this.comboBoxMotif.Name = "comboBoxMotif";
+            this.comboBoxMotif.Size = new System.Drawing.Size(149, 21);
+            this.comboBoxMotif.TabIndex = 14;
             // 
             // buttonAnnuler
             // 
@@ -89,6 +112,7 @@
             this.buttonAnnuler.TabIndex = 12;
             this.buttonAnnuler.Text = "Annuler";
             this.buttonAnnuler.UseVisualStyleBackColor = true;
+            this.buttonAnnuler.Click += new System.EventHandler(this.buttonAnnuler_Click);
             // 
             // labelDatedebut
             // 
@@ -116,6 +140,7 @@
             this.buttonSupprimerAbsences.TabIndex = 3;
             this.buttonSupprimerAbsences.Text = "Supprimer";
             this.buttonSupprimerAbsences.UseVisualStyleBackColor = true;
+            this.buttonSupprimerAbsences.Click += new System.EventHandler(this.buttonSupprimerAbsences_Click);
             // 
             // buttonModifierAbsences
             // 
@@ -125,12 +150,13 @@
             this.buttonModifierAbsences.TabIndex = 1;
             this.buttonModifierAbsences.Text = "Modifier";
             this.buttonModifierAbsences.UseVisualStyleBackColor = true;
+            this.buttonModifierAbsences.Click += new System.EventHandler(this.buttonModifierAbsences_Click);
             // 
             // groupBoxAbsences
             // 
             this.groupBoxAbsences.Controls.Add(this.buttonSupprimerAbsences);
             this.groupBoxAbsences.Controls.Add(this.buttonModifierAbsences);
-            this.groupBoxAbsences.Controls.Add(this.dataGridView1);
+            this.groupBoxAbsences.Controls.Add(this.dataGridViewAbsence);
             this.groupBoxAbsences.Location = new System.Drawing.Point(12, 12);
             this.groupBoxAbsences.Name = "groupBoxAbsences";
             this.groupBoxAbsences.Size = new System.Drawing.Size(931, 307);
@@ -138,49 +164,30 @@
             this.groupBoxAbsences.TabStop = false;
             this.groupBoxAbsences.Text = "Liste des absences";
             // 
-            // dataGridView1
+            // dataGridViewAbsence
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(870, 235);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // comboBoxMotif
-            // 
-            this.comboBoxMotif.FormattingEnabled = true;
-            this.comboBoxMotif.Location = new System.Drawing.Point(71, 27);
-            this.comboBoxMotif.Name = "comboBoxMotif";
-            this.comboBoxMotif.Size = new System.Drawing.Size(149, 21);
-            this.comboBoxMotif.TabIndex = 14;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(531, 27);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 15;
-            // 
-            // dateTimeFin
-            // 
-            this.dateTimeFin.Location = new System.Drawing.Point(531, 63);
-            this.dateTimeFin.Name = "dateTimeFin";
-            this.dateTimeFin.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeFin.TabIndex = 16;
+            this.dataGridViewAbsence.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAbsence.Location = new System.Drawing.Point(19, 19);
+            this.dataGridViewAbsence.MultiSelect = false;
+            this.dataGridViewAbsence.Name = "dataGridViewAbsence";
+            this.dataGridViewAbsence.ReadOnly = true;
+            this.dataGridViewAbsence.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAbsence.Size = new System.Drawing.Size(870, 235);
+            this.dataGridViewAbsence.TabIndex = 0;
             // 
             // FrmAbsence
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 483);
-            this.Controls.Add(this.groupBoxAjouter);
+            this.Controls.Add(this.groupBoxAjouterAbs);
             this.Controls.Add(this.groupBoxAbsences);
             this.Name = "FrmAbsence";
             this.Text = "Absence";
-            this.groupBoxAjouter.ResumeLayout(false);
-            this.groupBoxAjouter.PerformLayout();
+            this.groupBoxAjouterAbs.ResumeLayout(false);
+            this.groupBoxAjouterAbs.PerformLayout();
             this.groupBoxAbsences.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAbsence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -189,16 +196,16 @@
 
         private System.Windows.Forms.Button buttonEnregistrer;
         private System.Windows.Forms.Label labelTel;
-        private System.Windows.Forms.GroupBox groupBoxAjouter;
+        private System.Windows.Forms.GroupBox groupBoxAjouterAbs;
         private System.Windows.Forms.Button buttonAnnuler;
         private System.Windows.Forms.Label labelDatedebut;
         private System.Windows.Forms.Label labelMotifAbsences;
         private System.Windows.Forms.Button buttonSupprimerAbsences;
         private System.Windows.Forms.Button buttonModifierAbsences;
         private System.Windows.Forms.GroupBox groupBoxAbsences;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewAbsence;
         private System.Windows.Forms.ComboBox comboBoxMotif;
-        private System.Windows.Forms.DateTimePicker dateTimeFin;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerFin;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDebut;
     }
 }

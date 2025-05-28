@@ -36,7 +36,7 @@ namespace mediatek86.view
         /// <summary>
         /// Titre des fenêtres d'information
         /// </summary>
-        private readonly String titreFenetreInformation = "Information";
+        private readonly String titreFenetreInformation = "Avertissement";
         /// <summary>
         /// Conrtuction des composants graphiques et appel des autres initialisations
         /// </summary>
@@ -53,6 +53,7 @@ namespace mediatek86.view
         private void Init()
         {
             controller = new FrmMediatekController();
+            this.FormClosing += FrmMediatek_FormClosing;
             RemplirListePersonnel();
             RemplirListeService();
             EnCourseModifPersonnel(false);
@@ -103,6 +104,11 @@ namespace mediatek86.view
             }
         }
 
+        /// <summary>
+        /// Demande de suppresion d'un membre du personnel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSupprimer_Click(object sender, EventArgs e)
         {
             if (dgvPersonnel.SelectedRows.Count > 0)
@@ -129,24 +135,38 @@ namespace mediatek86.view
         {
             if (!textNom.Text.Equals("") && !textPrenom.Text.Equals("") && !textTel.Text.Equals("") && !textMail.Text.Equals("") && comboBoxService.SelectedIndex != -1)
             {
-                Service service = (Service)bdgService.List[bdgService.Position];
-                if (enCoursDeModifPersonnel)
+                string messageConfirmation = enCoursDeModifPersonnel
+                    ? "Voulez-vous enregistrer les modifications ?"
+                    : "Voulez-vous vraiment ajouter ce membre dans le personnel ?";
+
+                DialogResult confirmation = MessageBox.Show(
+                    messageConfirmation,
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmation == DialogResult.Yes)
                 {
-                    Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
-                    personnel.Nom = textNom.Text;
-                    personnel.Prenom = textPrenom.Text;
-                    personnel.Tel = textTel.Text;
-                    personnel.Mail = textMail.Text;
-                    personnel.Service = service;
-                    controller.UpdatePersonnel(personnel);
+                    Service service = (Service)bdgService.List[bdgService.Position];
+                    if (enCoursDeModifPersonnel)
+                    {
+                        Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                        personnel.Nom = textNom.Text;
+                        personnel.Prenom = textPrenom.Text;
+                        personnel.Tel = textTel.Text;
+                        personnel.Mail = textMail.Text;
+                        personnel.Service = service;
+                        controller.UpdatePersonnel(personnel);
+                    }
+                    else
+                    {
+                        Personnel personnel = new Personnel(0, textNom.Text, textPrenom.Text, textTel.Text, textMail.Text, service);
+                        controller.AddPersonnel(personnel);
+                    }
+                    RemplirListePersonnel();
+                    EnCourseModifPersonnel(false);
                 }
-                else
-                {
-                    Personnel personnel = new Personnel(0, textNom.Text, textPrenom.Text, textTel.Text, textMail.Text, service);
-                    controller.AddPersonnel(personnel);
-                }
-                RemplirListePersonnel();
-                EnCourseModifPersonnel(false);
             }
             else
             {
@@ -168,6 +188,10 @@ namespace mediatek86.view
             }
         }
 
+        /// <summary>
+        /// Active ou désactive l'état de modification
+        /// </summary>
+        /// <param name="modif"></param>
         private void EnCourseModifPersonnel(Boolean modif)
         {
             enCoursDeModifPersonnel = modif;
@@ -183,6 +207,43 @@ namespace mediatek86.view
                 textPrenom.Text = "";
                 textTel.Text = "";
                 textMail.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Ouvre la fenêtre de gestion des absences pour le personnel selectionné.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAbsences_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                Personnel personnelSelectionne = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                FrmAbsence frmAbsence = new FrmAbsence(personnelSelectionne);
+                frmAbsence.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner un personnel.", titreFenetreInformation);
+            }
+        }
+
+        /// <summary>
+        /// Demande une confirmation avant de fermer la fenêtre
+        /// </summary>
+        private void FrmMediatek_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Voulez-vous vraiment fermer cette fenêtre ?",
+                "Confirmation de fermeture",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
             }
         }
     }
